@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Larval 5.2 Rbac 示例
 
 ## 说明
@@ -28,4 +29,4 @@
 - 默认后台账号:admin@admin.com 密码:admin
 
 # admin-rbac.com
-laravel5.2 rbac 权限管理
+laravel5.2-rbac 前端模板 adminEX 后端借鉴 https://github.com/yuansir/laravel5-rbac-example.git
