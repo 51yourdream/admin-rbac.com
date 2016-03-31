@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Larval 5.2 Rbac 示例
 
 ## 说明

@@ -84,11 +84,6 @@
 @stop
 
 @section('pageJs')
-    <script src="{{ asset('js/ajax.js') }}"></script>
-    <!--tree-->
-    {{--<script src="{{asset('static/js/fuelux/js/tree.min.js')}}"></script>--}}
-    {{--<script src="{{asset('static/js/tree-init.js')}}"></script>--}}
-
     <script>
                 $(".show-sub-permissions").toggle(function () {
                     var child_id = $(this).attr('child-id');

@@ -1,12 +1,11 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: Administrator
  * Date: 2016/3/18
  * Time: 11:55
  */
-use Auth,Route;
+use \Auth,\Route;
 class Helper
 {
     /*用于模板中来检测连接显不显示*/

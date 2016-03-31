@@ -50,8 +50,8 @@
                                    data-original-title="对该权限的解释">
                         </div>
                         <div class="form-group">
-                            <label for="description">图标<a href="/mb/html/fontawesome.html" target="_blank"><i class="fa fa-info-circle"></i></a></label>
-                            <input type="text" name="description" id="description" value="{{ $permission->icon }}"
+                            <label for="icon">图标<a href="/mb/html/fontawesome.html" target="_blank"><i class="fa fa-info-circle"></i></a></label>
+                            <input type="text" name="icon" id="icon" value="{{ $permission->icon }}"
                                    data-toggle="tooltip"
                                    data-trigger="hover"
                                    class="form-control tooltips"

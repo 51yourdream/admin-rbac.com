@@ -53,6 +53,9 @@ Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'prefix' => 'admi
     Route::resource('permission', 'PermissionController');
     Route::delete('admin/permission/destroyall',['as'=>'admin.permission.destroy.all','uses'=>'PermissionController@destroyAll']);
     Route::resource('blog', 'BlogController');
+
+    /*搜索分页*/
+    Route::resource('goods','GoodsController');
 });
 
 
@@ -62,6 +65,5 @@ Route::get('/admin', function () {
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-
     Route::get('/home', 'HomeController@index');
 });
