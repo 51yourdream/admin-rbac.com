@@ -57,15 +57,23 @@
                                             <label for="selectall"></label>
                                         </span>
                                     </th>
-                                    <th>ID</th>
+                                    <th>
+                                        <div style="float: left">
+                                            <span>ID</span>
+                                        </div>
+                                        <div style="float: right;">
+                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('id_sort','ASC')}}" @if(isset($parameters['id_sort']) && $parameters['id_sort']=='ASC') class="color-red" @endif><span class="fa fa-sort-desc paixu"></span></a></div>
+                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('id_sort','DESC')}}" @if(isset($parameters['id_sort']) && $parameters['id_sort']=='DESC') class="color-red" @endif><span class="fa fa-sort-asc paixu"></span></a></div>
+                                        </div>
+                                    </th>
                                     <th>商品名称</th>
                                     <th>
                                         <div style="float: left">
                                             <span>价钱</span>
                                         </div>
                                         <div style="float: right;">
-                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('price_sort','ASC')}}"><span class="fa fa-sort-desc paixu"></span></a></div>
-                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('price_sort','DESC')}}"><span class="fa fa-sort-asc paixu"></span></a></div>
+                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('price_sort','ASC')}}" @if(isset($parameters['price_sort']) && $parameters['price_sort']=='ASC') class="color-red" @endif><span class="fa fa-sort-desc paixu"></span></a></div>
+                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('price_sort','DESC')}}" @if(isset($parameters['price_sort']) && $parameters['price_sort']=='DESC') class="color-red" @endif><span class="fa fa-sort-asc paixu"></span></a></div>
                                         </div>
                                     </th>
                                     <th>
@@ -73,8 +81,8 @@
                                             <span>库存</span>
                                         </div>
                                         <div style="float: right;">
-                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('stocks_sort','ASC')}}"><span class="fa fa-sort-desc paixu"></span></a></div>
-                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('stocks_sort','DESC')}}"><span class="fa fa-sort-asc paixu"></span></a></div>
+                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('stocks_sort','ASC')}}" @if(isset($parameters['stocks_sort']) && $parameters['stocks_sort']=='ASC') class="color-red" @endif><span class="fa fa-sort-desc paixu"></span></a></div>
+                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('stocks_sort','DESC')}}" @if(isset($parameters['stocks_sort']) && $parameters['stocks_sort']=='DESC') class="color-red" @endif><span class="fa fa-sort-asc paixu"></span></a></div>
                                         </div>
                                     </th>
                                     <th>
@@ -82,8 +90,8 @@
                                             <span>销量</span>
                                         </div>
                                         <div style="float: right;">
-                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('salenum_sort','ASC')}}"><span class="fa fa-sort-desc paixu"></span></a></div>
-                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('salenum_sort','DESC')}}"><span class="fa fa-sort-asc paixu"></span></a></div>
+                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('salenum_sort','ASC')}}" @if(isset($parameters['salenum_sort']) && $parameters['salenum_sort']=='ASC') class="color-red" @endif><span class="fa fa-sort-desc paixu"></span></a></div>
+                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('salenum_sort','DESC')}}" @if(isset($parameters['salenum_sort']) && $parameters['salenum_sort']=='DESC') class="color-red" @endif><span class="fa fa-sort-asc paixu"></span></a></div>
                                         </div>
                                     </th>
                                     <th>图片</th>
@@ -92,8 +100,8 @@
                                             <span>添加时间</span>
                                         </div>
                                         <div style="float: right;">
-                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('created_at_sort','ASC')}}"><span class="fa fa-sort-desc paixu"></span></a></div>
-                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('created_at_sort','DESC')}}"><span class="fa fa-sort-asc paixu"></span></a></div>
+                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('created_at_sort','ASC')}}" @if(isset($parameters['created_at_sort']) && $parameters['created_at_sort']=='ASC') class="color-red" @endif><span class="fa fa-sort-desc paixu"></span></a></div>
+                                            <div><a href="{{route('admin.goods.index')}}{{Helper::sort('created_at_sort','DESC')}}" @if(isset($parameters['created_at_sort']) && $parameters['created_at_sort']=='DESC') class="color-red" @endif><span class="fa fa-sort-asc paixu"></span></a></div>
                                         </div>
                                     </th>
                                     <th>修改时间</th>

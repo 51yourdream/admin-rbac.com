@@ -45,6 +45,10 @@ class GoodsController extends BaseController
                 $flag=false;
                 $goods_model = $goods_model->where('created_at','<=',"{$created_at_to}");
             }
+            if($key=='id_sort' && !empty($id_sort)){
+                $flag=false;
+                $goods_model = $goods_model->orderBy('id',$id_sort);
+            }
             if($key=='price_sort' && !empty($price_sort)){
                 $flag=false;
                 $goods_model = $goods_model->orderBy('price',$price_sort);
