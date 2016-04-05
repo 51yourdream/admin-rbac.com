@@ -120,7 +120,7 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-
+    'pageSize'=>env('PAGE_SIZE',10),
     'providers' => [
 
         /*

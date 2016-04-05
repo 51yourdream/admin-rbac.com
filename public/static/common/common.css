@@ -1,2 +1,4 @@
 .margin-top-5{margin-top:5px;}
-.body-background-color{background-color: white}
+.body-background-color{background-color: white;}
+.paixu{float:right;height: 3px;}
+.paixu:hover{color:red;cursor:pointer;}
