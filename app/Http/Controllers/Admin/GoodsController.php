@@ -78,6 +78,15 @@ class GoodsController extends BaseController
     }
 
     public function create(){
-        echo '添加商品';
+        Breadcrumbs::register('admin-goods-create', function ($breadcrumbs) {
+            $breadcrumbs->parent('admin-goods');
+            $breadcrumbs->push('添加商品', route('admin.goods.create'));
+        });
+        return view('admin.goods.create');
+    }
+    public function store(Request $request)
+    {
+        $form_data = $request->all();
+        var_dump($form_data);
     }
 }

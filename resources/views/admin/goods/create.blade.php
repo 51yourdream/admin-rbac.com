@@ -1,6 +1,7 @@
 @extends('_layout.admin-app')
 @section('pageCss')
-
+    <!--file upload-->
+    <link rel="stylesheet" type="text/css" href="{{asset('static/css/bootstrap-fileupload.min.css')}}" />
     {{--当前页面独有的样式--}}
 @stop
 
@@ -9,7 +10,7 @@
 @stop
 @section('pageHeading')
     <ul class="breadcrumb">
-        {!! Breadcrumbs::render('admin-role-create') !!}
+        {!! Breadcrumbs::render('admin-goods-create') !!}
     </ul>
 @stop
 @section('wrapper')
@@ -17,26 +18,51 @@
         <div class="col-lg-6">
             <section class="panel">
                 <header class="panel-heading">
-                    <a href="{{URL::to('admin/role')}}" class="btn btn-default"><i class="fa fa-mail-reply"></i> 返回列表</a>
+                    <a href="{{route('admin.goods.index')}}" class="btn btn-default"><i class="fa fa-mail-reply"></i> 返回列表</a>
                 </header>
                 <div class="panel-body">
-                    <form role="form" action="{{ route('admin.role.store') }}" method="POST">
+                    <form role="form" action="{{ route('admin.goods.store') }}" enctype="multipart/form-data" method="POST">
                         {!! csrf_field() !!}
                         <div class="form-group">
-                            <label for="name">角色名称</label>
-                            <input type="text" data-toggle="tooltip" name="name"
-                                   data-trigger="hover" class="form-control tooltips" id="name"
-                                   data-original-title="不可重复" value="{{ old('name') }}">
+                            <label for="title">商品标题</label>
+                            <input type="text" data-toggle="tooltip" name="title"
+                                   data-trigger="hover" class="form-control tooltips" id="title"
+                                   data-original-title="最多255个字符" value="{{ old('title') }}">
                         </div>
                         <div class="form-group">
-                            <label for="display_name">显示名称</label>
-                            <input type="text" class="form-control" name="display_name" id="display_name"
-                                   value="{{ old('display_name') }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="description">说明</label>
+                            <label for="description">商品描述</label>
                             <input type="text" class="form-control" name="description" id="description"
                                    value="{{ old('description') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">商品价钱</label>
+                            <input type="text" class="form-control" name="price" id="price" onkeyup="this.value=/^\d{0,4}\.?\d{0,2}$/.test(this.value) ? this.value : this.value.substr(0,this.value.length-1)" value="{{ old('price') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="stocks">商品库存</label>
+                            <input type="number" class="form-control" name="stocks" id="stocks" value="{{ old('stocks') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="pic">商品图片</label>
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                    {{--<img src="holder.js/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />--}}
+                                </div>
+                                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+                                   <span class="btn btn-default btn-file">
+                                       <span class="fileupload-new"><i class="fa fa-paper-clip"></i> 选择图片</span>
+                                       <span class="fileupload-exists"><i class="fa fa-undo"></i> 重新选择</span>
+                                       <input type="file" class="default" name="pic"/>
+                                   </span>
+                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> 删除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="stocks">商品详情</label>
+                            <textarea class="form-control ckeditor" name="editor1" rows="6"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">添加</button>
                         <button type="reset" class="btn btn-default">重置</button>
@@ -46,4 +72,11 @@
             </section>
         </div>
     </div>
+@stop
+@section('pageJs')
+    <script type="text/javascript" src="{{asset('static/js/ckeditor/ckeditor.js')}}"></script>
+    <script src="{{asset('static/js/holder.min.js')}}"></script>
+        <!--file upload-->
+    <script type="text/javascript" src="{{asset('static/js/bootstrap-fileupload.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('static/js/bootstrap-inputmask/bootstrap-inputmask.min.js')}}"></script>
 @stop
