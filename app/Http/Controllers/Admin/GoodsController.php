@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 use Toastr,Breadcrumbs;
 use App\Models\Goods;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class GoodsController extends BaseController
 {
@@ -87,6 +89,10 @@ class GoodsController extends BaseController
     public function store(Request $request)
     {
         $form_data = $request->all();
+        $file = $request->file('pic');
+        $extension = $file->getClientOriginalExtension();
+        Storage::disk('local')->put($file->getFilename().'.'.$extension,File::get($file));
+        
         var_dump($form_data);
     }
 }

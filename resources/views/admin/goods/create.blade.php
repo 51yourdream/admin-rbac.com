@@ -24,26 +24,26 @@
                     <form role="form" action="{{ route('admin.goods.store') }}" enctype="multipart/form-data" method="POST">
                         {!! csrf_field() !!}
                         <div class="form-group">
-                            <label for="title">商品标题</label>
+                            <label for="title">{{Lang::get('information.goods.title')}}</label>
                             <input type="text" data-toggle="tooltip" name="title"
                                    data-trigger="hover" class="form-control tooltips" id="title"
                                    data-original-title="最多255个字符" value="{{ old('title') }}">
                         </div>
                         <div class="form-group">
-                            <label for="description">商品描述</label>
+                            <label for="description">{{Lang::get('information.goods.description')}}</label>
                             <input type="text" class="form-control" name="description" id="description"
                                    value="{{ old('description') }}">
                         </div>
                         <div class="form-group">
-                            <label for="price">商品价钱</label>
+                            <label for="price">{{Lang::get('information.goods.price')}}</label>
                             <input type="text" class="form-control" name="price" id="price" onkeyup="this.value=/^\d{0,4}\.?\d{0,2}$/.test(this.value) ? this.value : this.value.substr(0,this.value.length-1)" value="{{ old('price') }}">
                         </div>
                         <div class="form-group">
-                            <label for="stocks">商品库存</label>
+                            <label for="stocks">{{Lang::get('information.goods.stocks')}}</label>
                             <input type="number" class="form-control" name="stocks" id="stocks" value="{{ old('stocks') }}">
                         </div>
                         <div class="form-group">
-                            <label for="pic">商品图片</label>
+                            <label for="pic">{{Lang::get('information.goods.pic')}}</label>
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
                                     <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
@@ -56,15 +56,15 @@
                                        <span class="fileupload-exists"><i class="fa fa-undo"></i> 重新选择</span>
                                        <input type="file" class="default" name="pic"/>
                                    </span>
-                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> 删除</a>
+                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> {{Lang::get('information.common.delete')}}</a>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="stocks">商品详情</label>
+                            <label for="stocks">{{Lang::get('information.goods.details')}}</label>
                             <textarea class="form-control ckeditor" name="editor1" rows="6"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">添加</button>
+                        <button type="submit" class="btn btn-primary">{{Lang::get('information.common.add')}}</button>
                         <button type="reset" class="btn btn-default">重置</button>
                     </form>
 
