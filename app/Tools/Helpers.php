@@ -88,4 +88,25 @@ class Helper
         }
         return $select;
     }
+
+    public static function fileUpload($file)
+    {
+        $filename = $file->getFilename();
+        $originalName = $file->getClientOriginalName(); //原始名称
+        $filesize = $file->getClientSize(); //获取文件大小
+        $fileMimeType = $file->getClientMimeType();
+        $fileExtension = $file->guessClientExtension();
+        $fileRealpath = $file->getRealPath();
+        echo $filename;
+        // Determining If An Uploaded File Is Valid
+        if ($file->isValid())
+        {
+
+//        $file->move(__DIR__.'/storage/',Input::file('file')->getClientOriginalName());
+            $res = $file->move(storage_path().'/pic',rand(9999,1000).'test.'.$fileExtension); //第一个参数是存储文件路径 第二个参数是新的文件名
+            var_dump($res);
+        }
+
+
+    }
 }
