@@ -86,7 +86,8 @@ class GoodsController extends BaseController
         });
         return view('admin.goods.create');
     }
-    public function store(Request $request)
+
+    public function store(Requests\Admin\Goods\StoreGoodsPostRequest $request)
     {
         $form_data = $request->all();
         $file = $request->file('pic')->move();

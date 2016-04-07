@@ -15,6 +15,14 @@
 @stop
 @section('wrapper')
     <div class="row">
+        <?php var_dump($errors->has(1)); ?>
+        <?php var_dump($errors->has('description')); ?>
+        <?php var_dump($errors->has('price')); ?>
+        <?php var_dump($errors->has('stocks')); ?>
+        <?php var_dump($errors->has('pic')); ?>
+        <?php var_dump($errors->first(1)); ?>
+        <?php var_dump($errors->all()); ?>
+        <?php var_dump($errors->first('description')); ?>
         <div class="col-lg-6">
             <section class="panel">
                 <header class="panel-heading">
