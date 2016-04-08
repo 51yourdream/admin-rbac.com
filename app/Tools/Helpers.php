@@ -118,7 +118,7 @@ class Helper
                 }
                 $newfilename = time().rand(9999,1000).'.'.$fileExtension;
                 $savepath = 'pic/'.date('Ymd');
-                $file->move(storage_path().'/'.$savepath,$newfilename); //第一个参数是存储文件路径 第二个参数是新的文件名
+                $file->move($savepath,$newfilename); //第一个参数是存储文件路径 第二个参数是新的文件名
                 $res = [
                     'code'=>'200',
                     'msg'=>'上传成功',

@@ -16,6 +16,7 @@ abstract class Request extends FormRequest
     protected function formatErrors(Validator $validator)
     {
         Toastr::error(implode('<br>',array_values($validator->errors()->all())));
-        return $validator->errors()->all();
+//        return $validator->errors()->all();
+        return $validator->getMessageBag()->toArray();
     }
 }

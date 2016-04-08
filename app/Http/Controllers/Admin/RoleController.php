@@ -134,7 +134,7 @@ class RoleController extends BaseController
     public function destroy($id)
     {
         $result = $this->role->delete($id);
-        return response()->json($result ? ['status' => 1] : ['status' => 0]);
+        return response()->json($result ? ['status' => 1,'msg'=>'删除成功!'] : ['status' => 0,'msg'=>'删除失败!']);
     }
 
     /**

@@ -124,7 +124,7 @@
                                         <td>{{ $value->price }}</td>
                                         <td>{{ $value->stocks }}</td>
                                         <td>{{ $value->salenum }}</td>
-                                        <td>{{ $value->pic }}</td>
+                                        <td><img src="{{asset(ltrim($value->pic,'/'))}}" width="100px" alt="{{$value->title}}"></td>
                                         <td>{{ $value->created_at }}</td>
                                         <td>{{ $value->updated_at }}</td>
                                         <td>

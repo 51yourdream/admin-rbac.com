@@ -89,10 +89,45 @@ class GoodsController extends BaseController
 
     public function store(Requests\Admin\Goods\StoreGoodsPostRequest $request)
     {
-
-        $form_data = $request->all();
         $file = $request->file('pic');
         $res = Helper::fileUpload($file);
-        var_dump($res);
+        if($res['code']!=200){
+            Toastr::error($res['msg']);
+            return redirect(url('admin.goods.create'));
+        }
+        $form_data = Input::all();
+        $form_data['pic'] = $res['filename'];
+        $result = Goods::create($form_data);
+        if($result){
+            Toastr::success('商品添加成功!');
+            return redirect('admin/goods');
+        }else{
+            Toastr::error('商品添加失败!');
+            return redirect('admin/goods/create');
+        }
+    }
+
+    public function edit($id)
+    {
+        Breadcrumbs::register('admin-goods-edit', function ($breadcrumbs) use ($id) {
+            $breadcrumbs->parent('admin-goods');
+            $breadcrumbs->push('修改商品', route('admin.goods.edit', ['id' => $id]));
+        });
+        $goods = Goods::find($id);
+        return view('admin.goods.edit')->withGoods($goods);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy($id)
+    {
+        $pic = Goods::find($id)->pic;
+        $result = Goods::destroy($id);
+        if($result){
+            @unlink($pic);
+        }
+        return response()->json($result ? ['status' => 1,'msg'=>'删除成功!'] : ['status' => 0,'msg'=>'删除失败!']);
     }
 }

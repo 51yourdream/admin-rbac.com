@@ -17,7 +17,7 @@ class StoreGoodsPostRequest extends Request
             'title' => 'required|max:255',
             'description' => 'required|max:255',
             'price'=>'required|between:0.1,999999',
-            'stocks'=>'required|digitsbetween:0,999999',
+            'stocks'=>'digitsbetween:0,999999',
             'pic'=>'required|image|mimes:jpeg,bmp,png,jpg',
         ];
     }
@@ -34,7 +34,6 @@ class StoreGoodsPostRequest extends Request
             'pic.mimes' => '图片MIME类型必须是jpeg,bmp,png,jpg',
             'price.required' => '商品价钱必须填写',
             'price.between' => '商品价钱必须在0.1-999999之间',
-            'stocks.required' => '商品库存必须填写',
             'stocks.between' => '商品库存必须在0-999999之间',
         ];
     }
