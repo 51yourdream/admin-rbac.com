@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Http\Requests\Admin\Goods;
+
+use App\Http\Requests\Admin\Request;
+
+class StoreGoodsPostRequest extends Request
+{
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'title' => 'required|max:255',
+            'description' => 'required|max:255',
+            'price'=>'required|between:0.1,999999',
+            'stocks'=>'required|digitsbetween:0,999999',
+            'pic'=>'required|image|mimes:jpeg,bmp,png,jpg',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => '商品标题必须填写',
+            'title.max' => '权限标题最多255个字符',
+            'description.required' => '商品描述必须填写',
+            'description.max' => '权限描述最多255个字符',
+            'pic.required' => '商品图片必须选择',
+            'pic.image' => '图片类型必须是jpeg,png,bmp,gif,svg',
+            'pic.mimes' => '图片MIME类型必须是jpeg,bmp,png,jpg',
+            'price.required' => '商品价钱必须填写',
+            'price.between' => '商品价钱必须在0.1-999999之间',
+            'stocks.required' => '商品库存必须填写',
+            'stocks.between' => '商品库存必须在0-999999之间',
+        ];
+    }
+}
