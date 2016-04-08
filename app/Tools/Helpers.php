@@ -89,24 +89,50 @@ class Helper
         return $select;
     }
 
-    public static function fileUpload($file)
+    public static function fileUpload($file,$ispic=true)
     {
-        $filename = $file->getFilename();
-        $originalName = $file->getClientOriginalName(); //原始名称
-        $filesize = $file->getClientSize(); //获取文件大小
-        $fileMimeType = $file->getClientMimeType();
-        $fileExtension = $file->guessClientExtension();
-        $fileRealpath = $file->getRealPath();
-        echo $filename;
         // Determining If An Uploaded File Is Valid
-        if ($file->isValid())
-        {
-
-//        $file->move(__DIR__.'/storage/',Input::file('file')->getClientOriginalName());
-            $res = $file->move(storage_path().'/pic',rand(9999,1000).'test.'.$fileExtension); //第一个参数是存储文件路径 第二个参数是新的文件名
-            var_dump($res);
+        if ($file->isValid()){
+            $filename = $file->getFilename();
+            $originalName = $file->getClientOriginalName(); //原始名称
+            $filesize = $file->getClientSize(); //获取文件大小
+            $fileMimeType = $file->getClientMimeType();
+            $fileExtension = $file->guessClientExtension();
+            $fileRealpath = $file->getRealPath();
+            if($ispic){
+                $extension_arr = Config::get('fileUpload.pic.extension');
+                $permission_size = Config::get('fileUpload.pic.size');
+                if(!in_array(strtolower($fileExtension),$extension_arr)){
+                    $res = [
+                        'code'=>100,
+                        'msg'=>'该图片类型不允许，支持(jpg,jpeg,png,gif)'
+                    ];
+                    return $res;
+                }
+                if($filesize > $permission_size){
+                    $res = [
+                        'code'=>101,
+                        'msg'=>'图片太大，最大支持5M'
+                    ];
+                    return $res;
+                }
+                $newfilename = time().rand(9999,1000).'.'.$fileExtension;
+                $savepath = 'pic/'.date('Ymd');
+                $file->move(storage_path().'/'.$savepath,$newfilename); //第一个参数是存储文件路径 第二个参数是新的文件名
+                $res = [
+                    'code'=>'200',
+                    'msg'=>'上传成功',
+                    'filename'=> $savepath.'/'.$newfilename,
+                ];
+                return $res;
+            }
+        }else{
+            $error = $file->getError();
+            $res = [
+                'code'=>$error,
+                'msg'=>'未知错误'
+            ];
+            return $res;
         }
-
-
     }
 }

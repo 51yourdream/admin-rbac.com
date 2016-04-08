@@ -88,8 +88,10 @@ class GoodsController extends BaseController
     }
     public function store(Request $request)
     {
+
         $form_data = $request->all();
-        $file = $request->file('pic')->move();
-        Helper::fileUpload($file);
+        $file = $request->file('pic');
+        $res = Helper::fileUpload($file);
+        var_dump($res);
     }
 }
