@@ -44,7 +44,6 @@ class AdminUserController extends BaseController
         $users = $this->adminUser->paginate(10);
         $queries = DB::getQueryLog();
         $last_query = end($queries);
-        error_log(print_r($last_query,1));
         return view('admin.rbac.admin_users.index', compact('users'));
     }
 

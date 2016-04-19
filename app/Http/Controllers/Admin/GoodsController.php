@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Events\ServerCreated;
+use App\Jobs\SendReminderEmail;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
@@ -117,6 +120,9 @@ class GoodsController extends BaseController
         });
         $goods = Goods::find($id);
 
+        $user = User::find(2);
+        $this->dispatch(new SendReminderEmail($user));
+
         Event::fire(new ServerCreated($goods)); //出发事件
 
         return view('admin.goods.edit')->withGoods($goods);
@@ -134,5 +140,11 @@ class GoodsController extends BaseController
             @unlink($pic);
         }
         return response()->json($result ? ['status' => 1,'msg'=>'删除成功!'] : ['status' => 0,'msg'=>'删除失败!']);
+    }
+
+    public function sendReminderEmail()
+    {
+        $user = Auth::user();
+        $this->dispatch(new SendReminderEmail($user));
     }
 }
