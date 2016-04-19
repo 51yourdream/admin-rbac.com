@@ -16,6 +16,12 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
         ],
+        'App\Events\PodcastWasPurchased' => [
+            'App\Listeners\EmailPurchaseConfirmation',
+        ],
+        'App\Events\ServerCreated' => [
+            'App\Listeners\ServerCreatedListener',
+        ],
     ];
 
     /**

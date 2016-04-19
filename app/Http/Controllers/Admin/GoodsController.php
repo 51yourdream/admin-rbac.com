@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\ServerCreated;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use Toastr,Breadcrumbs;
 use App\Models\Goods;
@@ -114,6 +116,9 @@ class GoodsController extends BaseController
             $breadcrumbs->push('修改商品', route('admin.goods.edit', ['id' => $id]));
         });
         $goods = Goods::find($id);
+
+        Event::fire(new ServerCreated($goods)); //出发事件
+
         return view('admin.goods.edit')->withGoods($goods);
     }
 

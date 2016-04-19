@@ -34,5 +34,9 @@ return [
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
+    'github'=>[
+        'client_id'=>'2da10cb169980353c26b',
+        'client_secret'=>'96025d5d6dee452c7dee7a975b9e9084a2acdbff',
+        'redirect'=>'http://admin-rbac.com/auth/github/callback',
+    ],
 ];

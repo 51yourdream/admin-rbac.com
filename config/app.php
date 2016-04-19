@@ -162,6 +162,8 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -214,6 +216,8 @@ return [
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
 
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];
