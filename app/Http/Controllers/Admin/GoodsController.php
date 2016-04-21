@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use Toastr,Breadcrumbs;
 use App\Models\Goods;
 use Illuminate\Support\Facades\Input;
@@ -93,7 +94,7 @@ class GoodsController extends BaseController
         $res = Helper::fileUpload($file);
         if($res['code']!=200){
             Toastr::error($res['msg']);
-            return redirect(url('admin.goods.create'));
+            return redirect('admin/goods/create');
         }
         $form_data = Input::all();
         $form_data['pic'] = $res['filename'];
@@ -115,6 +116,32 @@ class GoodsController extends BaseController
         });
         $goods = Goods::find($id);
         return view('admin.goods.edit')->withGoods($goods);
+    }
+
+    public function update(Requests\Admin\Goods\UpdateGoodsPostRequest $request,$id)
+    {
+        $goods = Goods::find($id);
+        $oldfilename = $goods->pic;
+        $formdata = Input::all();
+        $file = $request->file('pic');
+        if($file){
+            $res = Helper::fileUpload($file);
+            if($res['code']!=200){
+                Toastr::error($res['msg']);
+                return Redirect::back()->withInput()->withErrors('图片上传失败'); //返回
+            }else{
+                $newfilename = $res['filename'];
+                $formdata['pic'] = $newfilename;
+            }
+        }
+        if($goods->update($formdata)){
+            @unlink($oldfilename);
+            return redirect('admin/goods');
+        }else{
+            Toastr::error('修改失败');
+            @unlink($newfilename);
+            return Redirect::back()->withInput()->withErrors('修改失败'); //返回
+        }
     }
 
     /**

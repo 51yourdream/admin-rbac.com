@@ -23,6 +23,7 @@
                 <div class="panel-body">
                     <form role="form" action="{{ route('admin.goods.update',['id'=>$goods->id])}}" enctype="multipart/form-data" method="POST">
                         {!! csrf_field() !!}
+                        <input type="hidden" name="_method" value="PUT">
                         <div class="form-group @if($errors->has('title')) has-error @endif">
                             <label class="control-label" for="title">{{Lang::get('information.goods.title')}}</label>
                             <input required  type="text" data-toggle="tooltip" name="title"
