@@ -14,6 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/mail', function () {
+    return view('emails/reminder');
+});
 Route::get('/mb', function () {
     return Redirect::to('mb/index.html',301);
 });
@@ -71,4 +75,10 @@ Route::group(['middleware' =>[ 'web']], function () {
 Route::group(['middleware' =>[ 'web']], function () {
     Route::get('auth/github', 'Auth\AuthController@redirectToProvider');
     Route::get('auth/github/callback', 'Auth\AuthController@handleProviderCallback');
+
+    Route::get('publish', function () {
+        // 路由逻辑...
+        Redis::publish('test-channel', json_encode(['foo' => 'bar']));
+    });
 });
+

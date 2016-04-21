@@ -121,7 +121,9 @@ class GoodsController extends BaseController
         $goods = Goods::find($id);
 
         $user = User::find(2);
-        $this->dispatch(new SendReminderEmail($user));
+//        $job = (new SendReminderEmail($user))->delay(120);
+        $job = new SendReminderEmail($user);
+        $this->dispatch($job);
 
         Event::fire(new ServerCreated($goods)); //出发事件
 

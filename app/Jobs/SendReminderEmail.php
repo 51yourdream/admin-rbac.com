@@ -35,9 +35,11 @@ class SendReminderEmail extends Job implements ShouldQueue
          * 参数2:表示数据
          * 参数3:表示回调函数
          */
-        $mailer->send('emails.reminder',['adminuser'=>$this->user],function($message){
-            $to = 'lipeng@baicheng.com';
+        $name= "1014404765@qq.com";
+        $mailer->send('emails.reminder',['adminuser'=>$this->user],function($message) use ($name){
+            $to = $name;
             $message ->to($to)->subject('测试邮件');
+            $message->cc('1441885890@qq.com'); //抄送
         });
 //        $this->adminuser->reminders()->create();
     }

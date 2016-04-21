@@ -49,7 +49,6 @@ class ServerCreated extends Event implements ShouldBroadcast
      * @return array
      */
     public function broadcastWith(){
-        error_log(23435);
         return [
             'user' => [
                 'username'=>'lipeng',
